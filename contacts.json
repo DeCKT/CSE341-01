@@ -1,0 +1,19 @@
+[{
+    "firstName": "Amelia",
+    "lastName": "Eckton",
+    "email": "had19001@byui.edu",
+    "favoriteColor": "red",
+    "birthday": "July 26, 1999"
+},{
+    "firstName": "Ryan",
+    "lastName": "Eckton",
+    "email": "eck19001@byui.edu",
+    "favoriteColor": "green",
+    "birthday": "February 17, 2000"
+},{
+    "firstName": "Jared",
+    "lastName": "Eckton",
+    "email": "jared.e@gmail.com",
+    "favoriteColor": "blue",
+    "birthday": "June 14, 2004"
+}]
