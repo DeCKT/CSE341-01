@@ -17,7 +17,7 @@ const initDb = (callback) => {
         })
         .catch((err) => {
             callback(err);
-        })
+        });
 };
 
 const getDb = () => {
@@ -28,5 +28,6 @@ const getDb = () => {
 };
 
 module.exports = {
-    initDb, getDb
+    initDb,
+    getDb
 };
