@@ -20,4 +20,64 @@ const getById = async (req, res, next) => {
     });
 };
 
-module.exports = { getAllData, getById };
+const addContact = async (req, res, next) => {
+    const contact = {
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        email: req.body.email,
+        favoriteColor: req.body.favoriteColor,
+        birthday: req.body.birthday
+    };
+    const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
+    if (result.acknowledged) {
+        res.status(201).json(result);
+        next();
+    } else {
+        res.status(500).json(
+            result.error || 'Some error occurred while attempting to create a new contact.'
+        );
+    }
+};
+
+const updateContact = async (req, res, next) => {
+    const contactId = new ObjectId(req.params.id);
+    const result = await mongodb
+        .getDb()
+        .db()
+        .collection('contacts')
+        .updateOne(
+            { _id: contactId },
+            {
+                $set: {
+                    firstName: req.body.firstName,
+                    lastName: req.body.lastName,
+                    email: req.body.email,
+                    favoriteColor: req.body.favoriteColor,
+                    birthday: req.body.birthday
+                }
+            }
+        );
+    if (result.acknowledged) {
+        res.status(200).json(result);
+        next();
+    } else {
+        res.status(500).json(
+            result.error || 'Some error occured while attempting to update contact'
+        );
+    }
+};
+
+const deleteContact = async (req, res, next) => {
+    const contactId = new ObjectId(req.params.id);
+    const result = await mongodb.getDb().db().collection('contacts').deleteOne({ _id: contactId });
+    if (result.acknowledged) {
+        res.status(200).json(result);
+        next();
+    } else {
+        res.status(500).json(
+            result.error || 'Some error occured while attempting to delete contact'
+        );
+    }
+};
+
+module.exports = { getAllData, getById, addContact, updateContact, deleteContact };

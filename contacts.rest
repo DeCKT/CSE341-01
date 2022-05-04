@@ -1,4 +1,31 @@
-GET http://localhost:8080/contacts
+GET http://localhost:8080/contacts HTTP/1.1
 ###
 
-GET http://localhost:8080/contacts/626ac2589813bc641b10cdc6
+GET http://localhost:8080/contacts/626fea9eef09ea629d49bba2 HTTP/1.1
+###
+
+POST http://localhost:8080/contacts HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Daniel",
+    "lastName": "Eckton",
+    "email": "dseckton@gmail.com",
+    "favoriteColor": "red",
+    "birthday": "April 18, 1997"
+}
+###
+
+PUT http://localhost:8080/contacts/626fea9eef09ea629d49bba1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Ryan",
+    "lastName": "Eckton",
+    "email": "eck19001@byui.edu",
+    "favoriteColor": "green",
+    "birthday": "February 17, 2000"
+}
+###
+
+DELETE http://localhost:8080/contacts/627293bf923983f855032714 HTTP/1.1
