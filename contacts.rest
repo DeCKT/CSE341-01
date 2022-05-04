@@ -1,3 +1,8 @@
+#                    #
+#                    #
+# LOCALHOST REQUESTS #
+#                    #
+#                    #
 GET http://localhost:8080/contacts HTTP/1.1
 ###
 
@@ -29,3 +34,41 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:8080/contacts/627293bf923983f855032714 HTTP/1.1
+###
+
+#                 #
+#                 #
+# HEROKU REQUESTS #
+#                 #
+#                 #
+
+GET https://cse341-proj01.herokuapp.com/contacts HTTP/1.1
+###
+
+GET https://cse341-proj01.herokuapp.com/contacts/626fea9eef09ea629d49bba2 HTTP/1.1
+###
+
+POST https://cse341-proj01.herokuapp.com/contacts HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Daniel",
+    "lastName": "Eckton",
+    "email": "dseckton@gmail.com",
+    "favoriteColor": "red",
+    "birthday": "April 18, 1997"
+}
+###
+PUT https://cse341-proj01.herokuapp.com/contacts/626fea9eef09ea629d49bba1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstName": "Ryan",
+    "lastName": "Eckton",
+    "email": "eck19001@byui.edu",
+    "favoriteColor": "blue",
+    "birthday": "February 17, 2000"
+}
+###
+
+DELETE https://cse341-proj01.herokuapp.com/contacts/6272936bbdaa5f6c18b46bd3 HTTP/1.1
