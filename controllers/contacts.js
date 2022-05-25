@@ -20,7 +20,7 @@ const getById = async (req, res, next) => {
             next();
         });
     } catch (err) {
-        res.status(500).json(err);
+        res.status(404).json(err);
     }
 };
 
