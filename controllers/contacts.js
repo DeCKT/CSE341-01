@@ -25,21 +25,28 @@ const getById = async (req, res, next) => {
 };
 
 const addContact = async (req, res, next) => {
-    const contact = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        favoriteColor: req.body.favoriteColor,
-        birthday: req.body.birthday
-    };
-    const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
-    if (result.acknowledged) {
-        res.status(201).json(result);
-        next();
-    } else {
-        res.status(500).json(
-            result.error || 'Some error occurred while attempting to create a new contact.'
-        );
+    try {
+        const contact = {
+            firstName: req.body.firstName,
+            lastName: req.body.lastName,
+            email: req.body.email,
+            favoriteColor: req.body.favoriteColor,
+            birthday: req.body.birthday
+        };
+        if (!req.body.firstName) {
+            res.status(400).json('First Name is required');
+            throw err;
+        }
+        const result = await mongodb.getDb().db().collection('contacts').insertOne(contact);
+        if (result.acknowledged) {
+            res.status(201).json(result);
+            next();
+        } else {
+            res.status(500).json();
+            throw err;
+        }
+    } catch (err) {
+        res.status(404).json(err);
     }
 };
 
